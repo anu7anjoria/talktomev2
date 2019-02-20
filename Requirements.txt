@@ -1,0 +1,5 @@
+1) JOI Query(Validation)
+2) Different Sessions
+3) Admin controls
+4) Passport validation
+kill $(lsof -t -i:3000)
