@@ -44,7 +44,7 @@ process.on('SIGTERM', () => {
 //Including various schemas
 
 require('./user');
-require('./admin');
+require('./dept');
 require('./subject');
 require('./class');
 require('./faculty')

@@ -19,7 +19,11 @@ module.exports.register = function(req, res) {
 
   user.name = req.body.name;
   user.email = req.body.email;
-
+  user.univRoll = req.body.univRoll;
+  user.job = req.body.job;
+  user.semester = req.body.semester;
+  user.phone = req.body.phone;
+  user.dept = req.body.dept;
   user.setPassword(req.body.password);
 
   user.save(function(err) {

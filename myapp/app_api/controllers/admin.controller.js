@@ -1,25 +1,21 @@
 var mongoose = require('mongoose');
-var Admin = mongoose.model('Admin');
+var Dept = mongoose.model('Dept');
 var Subject = mongoose.model('Subject');
 var ClassObj = mongoose.model('Class');
 var Faculty = mongoose.model('Faculty');
 module.exports.getDept = function(req, res) {
-    Admin.findById(req.params.dept_id, function (err, admin) {
+    Dept.findById(req.params.dept_id, function (err, dept) {
         if (err)
             res.send(err);
-        else res.json(admin);
+        else res.json(dept);
     });
 };
 module.exports.postDept = function(req,res) {
-    var admin = new Admin();
-    var subject = new Subject();
-    admin.deptName = req.body.deptName,
-    admin.deptId = req.body.deptId,
-    admin.deptHeadId = req.body.deptHeadId,
-    subject.subjectId = req.body.subjectId,
-    admin.classId = req.body.classId,
-    admin.facultyId = req.body.facultyId
-        admin.save(function (err) {
+    var dept = new Dept();
+    dept.deptName = req.body.deptName,
+    dept.deptId = req.body.deptId,
+    dept.deptHeadId = req.body.deptHeadId,
+    dept.save(function (err) {
         if (err)
             res.json(err);
         else res.json({
@@ -28,29 +24,29 @@ module.exports.postDept = function(req,res) {
     });
 };
 module.exports.deleteDept = function(req,res) {
-    Admin.deleteOne({
+    Dept.deleteOne({
         _id: req.params.dept_id
-    }, function (err, admin) {
+    }, function (err, dept) {
         if (err)
             res.json(err);
         else 
-            res.json(admin);
+            res.json(dept);
     });
 };
 module.exports.updateDept = function(req,res) {
-        Admin.findById(req.params.dept_id, function (err, admin) {
+        Dept.findById(req.params.dept_id, function (err, dept) {
         if (err)
             res.send(err);
         else {
-            admin.deptName = req.body.deptName,
-            admin.deptId = req.body.deptId,
-            admin.deptHeadId = req.body.deptHeadId,
+            dept.deptName = req.body.deptName,
+            dept.deptId = req.body.deptId,
+            dept.deptHeadId = req.body.deptHeadId,
 
             // save the contact and check for errors
-            admin.save(function (err) {
+            dept.save(function (err) {
                 if (err)
                     res.json(err);
-                else res.json(admin);
+                else res.json(dept);
             });
         }
     });
@@ -119,7 +115,6 @@ module.exports.createClass = function(req,res) {
     var classObj = new ClassObj();
     classObj.className = req.body.className,
     classObj.classId = req.body.classId,
-    classObj.studentId = req.body.studentId
     classObj.save(function (err) {
         if (err)
             res.json(err);
@@ -145,8 +140,6 @@ module.exports.updateClass = function(req,res) {
         else {
             classObj.className = req.body.className,
             classObj.classId = req.body.classId,
-            classObj.studentId = req.body.studentId
-
             // save the contact and check for errors
             classObj.save(function (err) {
                 if (err)

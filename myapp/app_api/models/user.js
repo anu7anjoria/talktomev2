@@ -12,11 +12,25 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  univRoll:{
+    type:Number
+  },
   hash: String,
   salt: String,
   job:{
     type: String,
     required: true
+  },
+  semester:{
+    type:Number
+  },
+  phone:{
+    type:Number,
+    required:true
+  },
+  dept:{
+    type:String,
+    required:true
   }
 });
 

@@ -4,16 +4,18 @@ var jwt = require('express-jwt');
 var auth = jwt({
       secret: 'MY_SECRET',
       userProperty: 'payload'
-    });
+});
           
 var ctrlUser = require('../controllers/user.controller');
 var ctrlAdmin = require('../controllers/admin.controller');
 
 router.get('/profile', auth, ctrlUser.profileRead);
-// authentication
 router.post('/register', ctrlUser.register);
 router.post('/login', ctrlUser.login);
 
+//department - Cse,me,ee
+//batch - UWA,UCA,JAVA
+//section - UCA-1,UCA-2,UCA-3
 router.route('/admin/dept')
       .post(ctrlAdmin.postDept)
 router.route('/admin/dept/:dept_id')
@@ -31,7 +33,7 @@ router.route('/admin/dept/deptSubject/:deptSubject_id')
       .get(ctrlAdmin.getSubject)
 
 router.route('/admin/dept/class')               //this is like we will ask student to add his class then we will add him to class
-      .post(ctrlAdmin.createClass)
+      .post(ctrlAdmin.createClass)              //
 router.route('/admin/dept/class/:class_id')
       .get(ctrlAdmin.displayClass)
       .put(ctrlAdmin.updateClass)
